@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace PDFWorks
 {
@@ -45,21 +46,35 @@ namespace PDFWorks
         }
         public void MergePDFs(params string[] pdfs)
         {
-            using (PdfDocument targetDoc = new PdfDocument())
+            try
             {
-                foreach (string pdf in pdfs)
+                using (PdfDocument targetDoc = new PdfDocument())
                 {
-                    using (PdfDocument pdfDoc = PdfReader.Open(pdf, PdfDocumentOpenMode.Import))
+                    foreach (string pdf in pdfs)
                     {
-                        for (int i = 0; i < pdfDoc.PageCount; i++)
+                        using (PdfDocument pdfDoc = PdfReader.Open(pdf, PdfDocumentOpenMode.Import))
                         {
-                            targetDoc.AddPage(pdfDoc.Pages[i]);
+                            for (int i = 0; i < pdfDoc.PageCount; i++)
+                            {
+                                targetDoc.AddPage(pdfDoc.Pages[i]);
+                            }
                         }
                     }
+                    saveFileDialog1.Filter = "PDF document (*.pdf)|*.pdf";
+                    saveFileDialog1.ShowDialog();
+                    targetDoc.Save(saveFileDialog1.FileName);
+                    MessageBox.Show("Başarıyla kaydedildi. Dosya yolu: " + saveFileDialog1.FileName);
+                    lblFirstFile.Text = "";
+                    lblSecondFile.Text = "";
+                    FirstFile = "";
+                    SecondFile = "";
                 }
-                saveFileDialog1.ShowDialog();
-                targetDoc.Save(saveFileDialog1.FileName);
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hata: " + ex);
+            }
+            
         }
     }
 }
