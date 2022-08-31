@@ -61,10 +61,16 @@ namespace PDFWorks
                         }
                     }
                     saveFileDialog1.Filter = "PDF document (*.pdf)|*.pdf";
-                    saveFileDialog1.ShowDialog();
-                    targetDoc.Save(saveFileDialog1.FileName);
-                    MessageBox.Show("Başarıyla kaydedildi. Dosya yolu: " + saveFileDialog1.FileName);
-                    lblSelectedFiles.Text = "";
+                    if(saveFileDialog1.ShowDialog() == DialogResult.OK)
+                    {
+                        targetDoc.Save(saveFileDialog1.FileName);
+                        MessageBox.Show("Başarıyla kaydedildi. Dosya yolu: " + saveFileDialog1.FileName);
+                        lblSelectedFiles.Text = "";
+                    }
+                    else
+                    {
+                        MessageBox.Show("PDF ler birleştirildi fakat kaydetme işlemi kullanıcı tarafından iptal edildi.");
+                    }
                 }
             }
             catch (Exception ex)
