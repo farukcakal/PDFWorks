@@ -16,41 +16,41 @@ namespace PDFWorks
 {
     public partial class Form1 : Form
     {
-        string FirstFile;
-        string SecondFile;
+        List<string> Files = new List<string>();
         public Form1()
         {
             InitializeComponent();
         }
-
-        private void btnFirstSelect_Click(object sender, EventArgs e)
+        private void btnSelectFiles_Click(object sender, EventArgs e)
         {
-            openFileDialog1.ShowDialog();
-            FirstFile = openFileDialog1.FileName;
-            lblFirstFile.Text = FirstFile;
-        }
-
-        private void btnSecondSelect_Click(object sender, EventArgs e)
-        {
-            openFileDialog1.ShowDialog();
-            SecondFile = openFileDialog1.FileName;
-            lblSecondFile.Text = SecondFile;
+            openFileDialog1.Multiselect = true;
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                string FilesMessage = "";
+                foreach (string File in openFileDialog1.FileNames)
+                {
+                    Files.Add(File);
+                    FilesMessage += File + "\n";
+                }
+                MessageBox.Show("Seçilen dosyalar: \n"+FilesMessage);
+            }
+            else
+            {
+                MessageBox.Show("Dosya seçim işlemi kullanıcı tarafından iptal edildi.");
+            }
         }
 
         private void btnMerge_Click(object sender, EventArgs e)
         {
-            string[] files = new string[2];
-            files[0] = FirstFile;
-            files[1] = SecondFile;
-            MergePDFs(files);
+            MergePDFs(Files);
         }
-        public void MergePDFs(params string[] pdfs)
+        public void MergePDFs(List<string> PDFs)
         {
             try
             {
                 using (PdfDocument targetDoc = new PdfDocument())
                 {
-                    foreach (string pdf in pdfs)
+                    foreach (string pdf in PDFs)
                     {
                         using (PdfDocument pdfDoc = PdfReader.Open(pdf, PdfDocumentOpenMode.Import))
                         {
@@ -64,10 +64,7 @@ namespace PDFWorks
                     saveFileDialog1.ShowDialog();
                     targetDoc.Save(saveFileDialog1.FileName);
                     MessageBox.Show("Başarıyla kaydedildi. Dosya yolu: " + saveFileDialog1.FileName);
-                    lblFirstFile.Text = "";
-                    lblSecondFile.Text = "";
-                    FirstFile = "";
-                    SecondFile = "";
+                    lblSelectedFiles.Text = "";
                 }
             }
             catch (Exception ex)

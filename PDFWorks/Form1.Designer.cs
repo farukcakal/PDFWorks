@@ -28,38 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnFirstSelect = new System.Windows.Forms.Button();
-            this.btnSecondSelect = new System.Windows.Forms.Button();
+            this.btnSelectFiles = new System.Windows.Forms.Button();
             this.btnMerge = new System.Windows.Forms.Button();
-            this.lblFirstFile = new System.Windows.Forms.Label();
-            this.lblSecondFile = new System.Windows.Forms.Label();
+            this.lblSelectedFiles = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.SuspendLayout();
             // 
-            // btnFirstSelect
+            // btnSelectFiles
             // 
-            this.btnFirstSelect.Location = new System.Drawing.Point(12, 12);
-            this.btnFirstSelect.Name = "btnFirstSelect";
-            this.btnFirstSelect.Size = new System.Drawing.Size(75, 23);
-            this.btnFirstSelect.TabIndex = 0;
-            this.btnFirstSelect.Text = "İlk PDF";
-            this.btnFirstSelect.UseVisualStyleBackColor = true;
-            this.btnFirstSelect.Click += new System.EventHandler(this.btnFirstSelect_Click);
-            // 
-            // btnSecondSelect
-            // 
-            this.btnSecondSelect.Location = new System.Drawing.Point(12, 41);
-            this.btnSecondSelect.Name = "btnSecondSelect";
-            this.btnSecondSelect.Size = new System.Drawing.Size(75, 23);
-            this.btnSecondSelect.TabIndex = 0;
-            this.btnSecondSelect.Text = "İkinci PDF";
-            this.btnSecondSelect.UseVisualStyleBackColor = true;
-            this.btnSecondSelect.Click += new System.EventHandler(this.btnSecondSelect_Click);
+            this.btnSelectFiles.Location = new System.Drawing.Point(12, 12);
+            this.btnSelectFiles.Name = "btnSelectFiles";
+            this.btnSelectFiles.Size = new System.Drawing.Size(570, 23);
+            this.btnSelectFiles.TabIndex = 0;
+            this.btnSelectFiles.Text = "Birleştirilecek PDF Dosyalarını Seç";
+            this.btnSelectFiles.UseVisualStyleBackColor = true;
+            this.btnSelectFiles.Click += new System.EventHandler(this.btnSelectFiles_Click);
             // 
             // btnMerge
             // 
-            this.btnMerge.Location = new System.Drawing.Point(12, 70);
+            this.btnMerge.Location = new System.Drawing.Point(12, 41);
             this.btnMerge.Name = "btnMerge";
             this.btnMerge.Size = new System.Drawing.Size(570, 23);
             this.btnMerge.TabIndex = 0;
@@ -67,21 +55,13 @@
             this.btnMerge.UseVisualStyleBackColor = true;
             this.btnMerge.Click += new System.EventHandler(this.btnMerge_Click);
             // 
-            // lblFirstFile
+            // lblSelectedFiles
             // 
-            this.lblFirstFile.AutoSize = true;
-            this.lblFirstFile.Location = new System.Drawing.Point(102, 17);
-            this.lblFirstFile.Name = "lblFirstFile";
-            this.lblFirstFile.Size = new System.Drawing.Size(0, 13);
-            this.lblFirstFile.TabIndex = 1;
-            // 
-            // lblSecondFile
-            // 
-            this.lblSecondFile.AutoSize = true;
-            this.lblSecondFile.Location = new System.Drawing.Point(102, 46);
-            this.lblSecondFile.Name = "lblSecondFile";
-            this.lblSecondFile.Size = new System.Drawing.Size(0, 13);
-            this.lblSecondFile.TabIndex = 2;
+            this.lblSelectedFiles.AutoSize = true;
+            this.lblSelectedFiles.Location = new System.Drawing.Point(12, 75);
+            this.lblSelectedFiles.Name = "lblSelectedFiles";
+            this.lblSelectedFiles.Size = new System.Drawing.Size(0, 13);
+            this.lblSelectedFiles.TabIndex = 1;
             // 
             // openFileDialog1
             // 
@@ -93,11 +73,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(594, 97);
-            this.Controls.Add(this.lblSecondFile);
-            this.Controls.Add(this.lblFirstFile);
+            this.Controls.Add(this.lblSelectedFiles);
             this.Controls.Add(this.btnMerge);
-            this.Controls.Add(this.btnSecondSelect);
-            this.Controls.Add(this.btnFirstSelect);
+            this.Controls.Add(this.btnSelectFiles);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.Name = "Form1";
@@ -110,11 +88,9 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnFirstSelect;
-        private System.Windows.Forms.Button btnSecondSelect;
+        private System.Windows.Forms.Button btnSelectFiles;
         private System.Windows.Forms.Button btnMerge;
-        private System.Windows.Forms.Label lblFirstFile;
-        private System.Windows.Forms.Label lblSecondFile;
+        private System.Windows.Forms.Label lblSelectedFiles;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
